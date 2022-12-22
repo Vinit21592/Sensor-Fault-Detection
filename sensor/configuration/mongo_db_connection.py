@@ -1,6 +1,7 @@
 import pymongo
 from sensor.constant.database import DATABASE_NAME
 from sensor.constant.env_variable import MONGODB_URL_KEY
+from sensor.exception import SensorException
 import certifi
 import os
 ca = certifi.where()
@@ -17,4 +18,4 @@ class MongoClient:
             self.database = self.client[database_name]
             self.database_name = database_name
         except Exception as e:
-            raise e
+            raise SensorException(e,sys)
